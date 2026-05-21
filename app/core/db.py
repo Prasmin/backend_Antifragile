@@ -2,6 +2,7 @@ from collections.abc import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from app.core.config import settings
+# from sqlmodel import  SQLModel,
 
 
 async_engine = create_async_engine(
@@ -19,6 +20,8 @@ AsyncSessionLocal = async_sessionmaker(
 )
 
 
+
+
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     async with AsyncSessionLocal() as session:
         try:
@@ -28,3 +31,6 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
             await session.rollback()
             raise
 
+
+
+# SQLModel.metadata.create_all(create_async_engine)
