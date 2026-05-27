@@ -47,5 +47,5 @@ USER appuser
 # Expose the port that the application listens on.
 EXPOSE 8000
 
-# Run the application using the fastapi CLI (production mode).
-CMD ["fastapi", "run", "app/main.py", "--host", "0.0.0.0", "--port", "8000"]
+# Run the application using uvicorn directly.
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
