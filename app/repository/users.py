@@ -11,8 +11,7 @@ class UserRepository(BaseRepository[User]):
     User repository provides all the database operations for the User model.
     """
 
-    def __init__(self, session: AsyncSession) -> None:
-        super().__init__(session, User)
+    
 
     async def get_by_username(
         self, username: str, join_: set[str] | None = None
