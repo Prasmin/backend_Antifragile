@@ -8,14 +8,20 @@ class UserCreate(BaseModel):
     password: str          # raw — you hash it before saving
     username: str
 
-class UserRead(UserCreate):
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str
+
+class UserRead(BaseModel):
     id: int
     uuid: UUID
+    email: EmailStr
+    username: str
     status: str
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)  # allows ORM → Pydantic
 
-class UserUpdate(UserCreate):
+class UserUpdate(BaseModel):
     username: str 
-    password: str 
+    password: str
