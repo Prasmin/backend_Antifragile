@@ -2,12 +2,17 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 from app.core.db import get_db
+from app.core.config import settings
 from app.api.users import user_router
+from app.api.journal import journal_router
 import app.models  # noqa: F401 — ensures all models are registered with SQLAlchemy
+from openai import OpenAI
+
 
 app = FastAPI()
 
 app.include_router(user_router, prefix="/api/v1")
+app.include_router(journal_router, prefix="/api/v1")
 
 @app.get("/")
 def read_root():

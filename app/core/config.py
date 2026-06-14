@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     POSTGRES_DB: str                    # required — must be set in .env
     SQLALCHEMY_DATABASE_URI: PostgresDsn | None = None
 
+    OPENAI_API_KEY: str                 # required — must be set in .env
+
     @model_validator(mode="after")
     def build_database_uri(self) -> "Settings":
         if self.SQLALCHEMY_DATABASE_URI is None:
